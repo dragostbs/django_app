@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'starting_app/main.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <title>Main Pages</title>
+</head>
+  <body>
+    {% include 'starting_app/utils/header.html' %}
+    <nav>
+        <div class="main-nav">
+          <div class="title"> 
+            <h1>Le Blogger</h1>
+            <p class="nav-tagline">Read, Watch, Write, Film and Tell Stories That Matter</p>
+          </div>
+          <div class="nav-icons">
+            <a href="#"> <i class="fas fa-search"></i></a>
+            <a href="#"> <i class="far fa-bell"></i> </a>
+            <a href="#"> <i class="fas fa-bookmark"></i></a>
+            <a href="#"> <i class="far fa-user"></i></a>
+          </div>
+        </div>
+        <div class="nav-subline">
+          <p class="nav-date">June 22nd, 2018</p>
+          <p class="nav-editions">Edition: <span><a href="#">US</a></span> | <span><a href="#"> Canada</a></span> | <span href="#"><a href="#">World</a></span> | <span><a href="#">Region</a></span></p>
+        </div>
+
+        <div class="nav-bottomline">
+
+          {% for nav in navs %}
+            <a href="#">{{ nav }}</a>
+          {% endfor %}
+          
+        </div>
+      </nav>
+      
+      <section class="main-container">
+        <div class="headlines">
+          <div class="divider border">
+            <h1 class="section-header">Today's Headlines</h1>
+            <a href="#">SEE ALL</a>
+          </div>
+          
+          {% for data in headlines %}
+            <div class="blog-headline">
+              <div class="topic">
+                <a href="#" >{{ data.topic }}</a>
+              </div>
+              <div class="imgs">
+                <div class="tags">
+                  <p>{{ data.tag_title }}</p>
+                  <a href="#">
+                    <span> 
+                      <i class="fas fa-tag"></i>
+                    </span> {{ data.tag_1 }}
+                  </a>
+                  <a href="#">
+                    <span> 
+                      <i class="fas fa-tag"></i>
+                    </span> {{ data.tag_2 }}
+                  </a>
+                </div>
+                <img  src={{ data.img }} alt="random_image"/>
+              </div>
+              <div class="blog-info">
+                <a href="#" class="blog-info-h1">{{ data.title }}</a>
+                <div class="blog-info-p"> 
+                  <p>{{ data.content }}<p> 
+                </div>
+                <div class="blog-info-subline">
+                  <h4 class="blog-info-h4"> <span><a href="#">{{ data.author }}</a></span> <span>•</span> <span>{{ data.read_time }}</span></h4>
+                  <h4 class="blog-info-h4"><span>{{ data.post_date }}</span><span> <a class="bookmark" href="#" ><i class="thisbookmark far fa-bookmark"></i> </a> </span> <span><a class="chevron" href="#" > <i class=" fas fa-chevron-down"></i> </a></span></h4>
+              </div>
+              </div>
+            </div>
+          {% endfor %}  
+
+        </div>
+        
+        <div class="aside">
+          <div class="divider border">
+            <h1 class="section-header">Recent Posts </h1>
+            <a href="#">MORE</a>
+          </div>
+
+          {% for post in posts %}  
+            <div class="aside-blog-headline">
+              <div class="aside-blog-info">
+                <a href="#" class="blog-info-h1">{{ post.title }}</a>
+                <div class="aside-blog-info-p"> <p>{{ post.content }}<p></div>
+                <div class="aside-blog-info-subline">
+                  <h4 class="blog-info-h4"> <span><a href="#">{{ post.author }}</a></span> <span>•</span> <span>{{ post.read_time }}</span></h4>
+                  <h4 class="blog-info-h4"><span>{{ post.post_date }}</span><span> <a class="bookmark" href="#" ><i class="thisbookmark far fa-bookmark"></i> </a> </span> <span><a class="chevron" href="#" > <i class=" fas fa-chevron-down"></i></a></span></h4>
+              </div>
+              </div>
+            </div>
+          {% endfor %} 
+          
+          <div class="divider border">
+            <h1 class="section-header">Your Bookmarks </h1>
+            <a href="#"> MORE</a>
+          </div>
+
+          {% for bookmark in bookmarks %} 
+            <div class="bookmarks-section">
+                <div class="aside-blog-headline">
+                  <div class="topic">
+                    <a href="#" >{{ bookmark.link }}</a>
+                  </div>  
+                  <div class="aside-blog-info">
+                    <p> <span class="bookmarks-icon"> 
+                      <a class="bookmark" href="#" ><i class="footerbookmark fas fa-bookmark"></i> </a>
+                    </span><a href="#" class="blog-info-h1">{{ bookmark.title }}</a></p>
+                      <div class="aside-blog-info-p"> 
+                        <p> {{ bookmark.content }}<p>
+                      </div>
+                      <div class="aside-blog-info-subline">
+                          <h4 class="blog-info-h4"> <span><a href="#">{{ bookmark.author }}</a></span> <span>•</span> <span>{{ bookmark.read_time }}</span></h4>
+                          <h4 class="blog-info-h4"><span>{{ bookmark.post_date }}</span> <span><a class="chevron" href="#" > <i class=" fas fa-chevron-down"></i> </a></span></h4>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          {% endfor %} 
+
+        </div>
+      </section>
+
+      <footer>
+         <div class="footer-topline">
+            <div class="footer-icons">
+              <a href="#"> <i class="fab fa-facebook-f"></i> </a>
+              <a href="#"> <i class="fab fa-twitter"></i> </a>
+              <a href="#"> <i class="fas fa-rss"></i> </a>
+            </div>
+           <p><span> leblogger.com</span><span> &copy; 2024 </span><span class="mini-title">Le Blogger</span></p>
+          <div class="footer-actions">
+            <span><a href="#"> Subscribe </a></span>
+            <span><a href="#"> Log In </a></span>
+        </div>
+      </div>
+      </footer>
+    </body>
+  </html>

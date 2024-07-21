@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'data_app/main.css' %}">
+    <title>Forms</title>
+</head>
+<body>
+    <form method='POST' id="form" class="form">
+        {% csrf_token %}
+        <h2>Register Books</h2>
+        <div class="form-control">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+            {{ form.title.errors }}
+        </div>
+        <div class="form-control">
+            {{ form.author.label_tag }}
+            {{ form.author }}
+            {{ form.author.errors }}
+        </div>
+        <div class="form-control">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+            {{ form.rating.errors }}
+        </div>
+        <div class="form-control">
+            {{ form.published_countries.label_tag }}
+            {{ form.published_countries }}
+            {{ form.published_countries.errors }}
+        </div>
+        <div class="form-control">
+            {{ form.is_bestseller.label_tag }}
+            {{ form.is_bestseller }}
+            {{ form.is_bestseller.errors }}
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div>
+        <h1>{{title}}</h1>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header</title>
+    <link rel="stylesheet" href="{% static 'starting_app/header.css' %}">
+  </head>
+    {% comment %} {% for page in pages %}
+        <li class="horizontal-list"><a href='{% url 'main-pages' page %}' class="btn twtr">{{ page|title }}</a></li>
+    {% endfor %} {% endcomment %}
+    <body>
+      
+    </body>
+</html>
