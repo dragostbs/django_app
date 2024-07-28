@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'chat_app/main.css' %}">
+    <img id="backgroundimg" src="https://images.unsplash.com/photo-1554110397-9bac083977c6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Chat</title>
+
+    <script>
+      function loading() {
+        document.getElementById("loading").style.display = "block";
+      }
+    </script>
+
+</head>
+<body>
+  <div class="main">
+    <div class="header">
+      <div class="center">
+        <div>
+          <img class="pfp" src="https://cdn.pixabay.com/photo/2022/10/10/17/27/circle-7512269_960_720.jpg">
+          <p id="pfpname">AI CHAT</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div>
+        <p>{{ date }}</p>
+        {% for msg in chat_history %}
+          <div class="msg-btn-holder">
+              <div class="sender-msg msg-btn">
+                <p>{{ msg.user_msg }}</p>
+              </div><br>
+          </div>
+          <div class="msg-btn-holder">
+              <div class="receiver-msg msg-btn">
+                <p>{{ msg.bot_msg }}</p>
+              </div><br>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="msg">
+        <form method="POST" class="submit-msg" onsubmit="loading()">
+          {% csrf_token %}
+          {{ form }}
+          <button type="submit" class="send-ico">
+            <i style="position:absolute;" class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+        <form method="POST">
+          {% csrf_token %}
+          <button type="submit" name="clear" class="icon-button" onsubmit="loading()">
+            <i style="cursor:pointer;display:flex;color:#ffffff;" class="fa-solid fa-trash fa-lg"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="loading", id="loading"></div> 
+  </div>
+</body>
+</html>
